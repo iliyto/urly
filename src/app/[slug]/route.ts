@@ -5,9 +5,9 @@ const prisma = new PrismaClient()
 
 export async function GET(
   request: NextRequest,
-  { params }: { params: { slug: string } }
+  context: { params: { slug: string } }
 ) {
-  const slug = params.slug
+  const { slug } = context.params
 
   try {
     const shortLink = await prisma.shortLink.findUnique({
