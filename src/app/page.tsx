@@ -33,8 +33,9 @@ export default function Home() {
 
       const data = await response.json()
       setShortLink(`${window.location.origin}/${data.shortLink.slug}`)
-    } catch (err) {
-      setError('An error occurred while creating the short link. Please try again.')
+    } catch (err: unknown) {
+      console.error('Error creating short link:', err);
+      setError('An error occurred while creating the short link. Please try again.');
     } finally {
       setIsLoading(false)
     }
